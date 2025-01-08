@@ -1,21 +1,16 @@
 name: brawlifics
-networks:
-  brawlifics:
-    driver: bridge
-
 services:
   mqtt:
     image: eclipse-mosquitto
     restart: unless-stopped
     ports:
+      - "${MQTT_PORT:-1883}:${MQTT_PORT:-1883}"
       - "${MQTT_WS_PORT:-9001}:${MQTT_WS_PORT:-9001}"
     volumes:
       - ./etc/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ./etc/mqtt_users:/mosquitto/config/mqtt_users
       - ./data:/mosquitto/data
       - ./ssl:/letsencrypt
-    networks:
-      - brawlifics
 
   backend:
     image: ghcr.io/oriolrius/brawlifics:latest
@@ -53,5 +48,5 @@ services:
       GAME_STATUS_TOPIC: ${GAME_STATUS_TOPIC}
       GAME_WINNER_TOPIC: ${GAME_WINNER_TOPIC}
       GAME_PLAYERS_TOPIC: ${GAME_PLAYERS_TOPIC}
-    networks:
-      - brawlifics
+    depends_on:
+      - mqtt
