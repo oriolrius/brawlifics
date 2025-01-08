@@ -1,0 +1,523 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+
+@font-face {
+  font-family: 'BrawlFont';
+  src: url('../fonts/Nougat-ExtraBlack.ttf') format('truetype');
+}
+
+body {
+  font-family: 'BrawlFont', sans-serif;
+  background-color: #29386f;
+}
+
+h1, h2 {
+  font-family: 'BrawlFont', sans-serif;
+  color:#ffcc00;
+  font-weight: lighter;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: #ffcc00;
+  /* Brawl Stars yellow */
+  color: #000000;
+  /* Black */
+}
+
+.button {
+  background-color: #ffcc00;
+  /* Brawl Stars yellow */
+  border: none;
+  color: #000000;
+  /* Black */
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.ldcv h1 {
+  color: #000000;
+  font-style: italic;
+}
+
+.ldcv .base .inner {
+  padding: 25px;
+}
+
+.ldcv .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* .ldcv h1 {
+  font-family: 'Roboto', sans-serif;
+} */
+
+.ldcv .button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.ldcv .button.cancel {
+  background-color: rgb(255, 0, 0);
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.ldcv .button.ok {
+  background-color: greenyellow;
+  font-weight: bold;
+}
+
+#add-room-form label {
+  font-family: 'Pacifico', cursive;
+  /* font-weight: bold; */
+  font-size: 35px;
+  color: #ffcc00;
+}
+
+#add-room-form input {
+  font-family: 'Pacifico', cursive;
+  font-size: 20px;
+}
+
+#name {
+  font-family: 'Pacifico', cursive;
+  font-size: 30px;
+  width: 100%;
+}
+
+#name:focus {
+  outline: 2px solid #ffcc00;
+  border-color: #ffcc00;
+}
+
+#sala, #player-name {
+  color: orange;
+}
+
+#game-status {
+  background-color: #ddb462;
+  color: #581482;
+  border-radius: 5px;
+  width: 75%;
+  text-align: center;
+  font-size: 3em;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+
+#game-status h2 {
+  font-size: 1em;
+  color: #581482;
+  margin-block: 0px;
+  line-height: 1.2;
+}
+
+.game-waiting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  /* font-size: 0.9em; */
+  /* font-family: 'Roboto', sans-serif; */
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 40%;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+#games-table {
+  width: 98%;
+  margin: 0 auto;
+}
+
+.styled-table a {
+  color: #ffcc00;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+.styled-table a:hover {
+  color: #ffd633;
+  text-decoration: underline;
+}
+
+
+.styled-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-size: 1.5em;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  font-size: 1.2em;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+  font-size: 1.2em;
+  text-align: center;
+  background-color: #f3f3f328;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f390;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #ffcc00;
+}
+
+/* .styled-table tbody tr.active-row {
+  color: #009879;
+} */
+
+@keyframes shake {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    1% { transform: translate(-5px, 3px) rotate(-10deg); }
+    2% { transform: translate(3px, -2px) rotate(10deg); }
+    3% { transform: translate(-3px, -2px) rotate(-8deg); }
+    4% { transform: translate(3px, 2px) rotate(8deg); }
+    5% { transform: translate(-3px, -1px) rotate(-6deg); }
+    6% { transform: translate(5px, 2px) rotate(6deg); }
+    7% { transform: translate(-5px, 0px) rotate(-4deg); }
+    8% { transform: translate(2px, -1px) rotate(4deg); }
+    9% { transform: translate(-1px, 1px) rotate(-2deg); }
+    10% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+
+}
+
+.brawl-stars-text {
+  font-family: 'BrawlFont', sans-serif;
+  font-size: 100px;
+  font-weight: bold;
+  color: #ff0000; /* Main red color */
+  text-shadow: 
+      -4px -4px 0px #000000, /* Black shadow outline */
+      /* 4px 4px 0px #ffffff, */
+      6px 6px 0px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+  animation: shake 5.5s infinite;
+  margin-block: 0px;
+  /* animation-delay: 1s;
+  animation-iteration-count: infinite; */
+}
+.brawl-stars-invtext {
+  font-family: 'BrawlFont', sans-serif;
+  font-size: 100px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow:
+      -4px -4px 0px #000000, /* Black shadow */
+      4px 4px 0px #ff0000;  /* Red shadow for pop */
+}
+
+.brawl-stars-subtext {
+  font-family: 'BrawlFont', sans-serif;
+  font-size: 40px;
+  color: #ffffff;
+  text-shadow:
+      -4px -4px 0px #000000, /* Black shadow */
+      4px 4px 0px #ff0000;  /* Red shadow for pop */
+  margin-block: 0px;
+}
+
+#challenge {
+  font-family: 'ui-monospace';
+  font-size: 2.2em;
+}
+
+#answer {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5em;
+  padding: 10px 15px;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+  width: 200px;
+  margin: 10px auto;
+  display: block;
+  box-shadow: 4px 4px 0px #ffcc00;
+  transition: all 0.2s ease;
+}
+
+#challenge_submit_button {
+  font-family: 'BrawlFont', sans-serif;
+  font-size: 1.5em;
+  padding: 10px 25px;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  background-color: hsl(103, 100%, 50%);
+  color: #ffffff;
+  text-align: center;
+  margin: 10px auto;
+  display: block;
+  box-shadow: 4px 4px 0px #000000;
+  text-shadow: -2px -2px 0px #000000;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button-container {
+  margin-bottom: 20px;
+}
+
+#canvas-text h1 {
+  position: absolute;
+  margin-top: 30vh;
+  width: 100%;
+  text-align: center;
+  font-size: 333%;
+  font-family: sans-serif;
+  color: grey;
+  opacity: 0.5;
+}
+
+canvas {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+#game-status-container {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  gap: 20px;
+}
+
+.race-track {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  margin: 3px;
+}
+
+.race-track .finish-flag {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2em;
+  color: #000000;
+}
+
+.runner {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  transition: left 3s ease-in-out;
+}
+
+.race-track h3 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  color: #cccccc;
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  z-index: 1;
+}
+
+.race-track h3.you {
+  color: #aaaaaa;
+}
+
+.race-track img {
+  z-index: 999;
+}
+
+.room-form {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  grid-column: 1 / -1;
+}
+
+.room-form h2 {
+  font-family: 'BrawlFont', sans-serif;
+  font-size: 2em;
+  color: #ffcc00;
+  text-shadow: -2px -2px 0px #000000;
+}
+
+#room {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5em;
+  padding: 10px 15px;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+  width: 300px;
+  margin: 10px auto;
+  display: block;
+  box-shadow: 4px 4px 0px #ffcc00;
+  transition: all 0.2s ease;
+}
+
+#room:focus {
+  outline: none;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #ffcc00;
+}
+
+.submit-button {
+  font-family: 'BrawlFont', sans-serif;
+  font-size: 2.2em;
+  padding: 10px 25px;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  background-color: hsl(103, 100%, 50%);
+  color: #ffffff;
+  text-align: center;
+  margin: 10px auto;
+  display: block;
+  box-shadow: 4px 4px 0px #000000;
+  text-shadow: -2px -2px 0px #000000;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.submit-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.verd {
+  color: hsl(103, 100%, 50%);
+}
+
+.vermell {
+  color: #ff0000;
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  background-color: #f3f3f328;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  background-color: #f3f3f390;
+}
+
+.gallery-item.selected {
+  border: 3px solid #ffcc00;
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+.gallery-item h3 {
+  color: #ffcc00;
+  margin: 10px 0;
+}
+
+.upload-container {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 600px;
+  background-color: #f3f3f328;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.upload-container h2 {
+  color: #ffcc00;
+}
+
+#file-upload {
+  display: none;
+}
+
+.upload-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ffcc00;
+  color: #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.upload-label:hover {
+  background-color: #ffd633;
+}

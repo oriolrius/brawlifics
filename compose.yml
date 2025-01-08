@@ -1,0 +1,21 @@
+# This file is for development and testing purposes, not production.
+name: brawlifics
+services:
+  mqtt:
+    image: eclipse-mosquitto
+    restart: unless-stopped
+    network_mode: "host"
+    volumes:
+      - ./etc/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./etc/mqtt_users:/mosquitto/config/mqtt_users
+      - ./tmp/data:/mosquitto/data
+  backend:
+    image: brawlifics:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: "host"
+    volumes:
+      - ./assets:/app/assets
+      - ./lib:/app/lib
+    restart: unless-stopped

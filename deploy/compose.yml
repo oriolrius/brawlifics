@@ -1,0 +1,57 @@
+name: brawlifics
+networks:
+  brawlifics:
+    driver: bridge
+
+services:
+  mqtt:
+    image: eclipse-mosquitto
+    restart: unless-stopped
+    ports:
+      - "${MQTT_WS_PORT:-9001}:${MQTT_WS_PORT:-9001}"
+    volumes:
+      - ./etc/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./etc/mqtt_users:/mosquitto/config/mqtt_users
+      - ./data:/mosquitto/data
+      - ./ssl:/letsencrypt
+    networks:
+      - brawlifics
+
+  backend:
+    image: ghcr.io/oriolrius/brawlifics:latest
+    ports:
+      - "${PORT:-8000}:${PORT:-8000}"
+    volumes:
+      - ./images:/app/assets/images
+    restart: unless-stopped
+    environment:
+      HTTP_SECURE: ${HTTP_SECURE}
+      HOST: ${HOST}
+      PORT: ${PORT}
+      DEBUG: ${DEBUG}
+      RELOAD: ${RELOAD}
+      LOG_LEVEL: ${LOG_LEVEL}
+      MQTT_SECURE: ${MQTT_SECURE}
+      MQTT_BROKER: ${MQTT_BROKER}
+      MQTT_PORT: ${MQTT_PORT}
+      MQTT_WS_PORT: ${MQTT_WS_PORT}
+      MQTT_URI: ${MQTT_URI}
+      MQTT_FE_USER: ${MQTT_FE_USER}
+      MQTT_FE_PASS: ${MQTT_FE_PASS}
+      MQTT_BO_USER: ${MQTT_BO_USER}
+      MQTT_BO_PASS: ${MQTT_BO_PASS}
+      MQTT_BE_USER: ${MQTT_BE_USER}
+      MQTT_BE_PASS: ${MQTT_BE_PASS}
+      TRACK_LENGTH: ${TRACK_LENGTH}
+      MAX_PLAYERS: ${MAX_PLAYERS}
+      ASSETS_FOLDER: ${ASSETS_FOLDER}
+      DATA_FOLDER: ${DATA_FOLDER}
+      MQTT_TOPIC_BASE: ${MQTT_TOPIC_BASE}
+      CHALLENGE_TOPIC: ${CHALLENGE_TOPIC}
+      RESULT_TOPIC: ${RESULT_TOPIC}
+      PLAYER_TOPIC: ${PLAYER_TOPIC}
+      GAME_STATUS_TOPIC: ${GAME_STATUS_TOPIC}
+      GAME_WINNER_TOPIC: ${GAME_WINNER_TOPIC}
+      GAME_PLAYERS_TOPIC: ${GAME_PLAYERS_TOPIC}
+    networks:
+      - brawlifics

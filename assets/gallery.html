@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brawlifics - Gallery</title>
+    <script src="js/version.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="js/gallery.js"></script>
+</head>
+<body>
+    <h1 class="brawl-stars-text">BrawL<i class="brawl-stars-invtext">ific$</i></h1>
+    <h2 class="brawl-stars-subtext">Galeria de personatges</h2>
+
+    <div class="upload-container">
+        <h2>Pujar nou personatge</h2>
+        <label for="file-upload" class="upload-label">
+            <i class="fa-solid fa-upload"></i> Seleccionar fitxer
+        </label>
+        <input type="file" id="file-upload" accept="image/gif" />
+    </div>
+
+    <div class="gallery-container" id="gallery">
+        <!-- Gallery items will be added here dynamically -->
+    </div>
+
+    <div class="button-container">
+        <button onclick="window.location.href = new URLSearchParams(window.location.search).get('back') || '/'" class="submit-button">
+            Seleccionar
+        </button>
+    </div>
+    <footer id="version-footer" style="position: fixed; bottom: 10px; right: 10px; font-family: Arial, Helvetica, sans-serif;font-size: 12px; color: #d2d2d2;">
+    </footer>
+</body>
+</html>

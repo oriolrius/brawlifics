@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brawlifics</title>
+  <script src="local/js/version.js"></script>
+  <link rel="stylesheet" href="local/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+  <h1 class="brawl-stars-text">BrawL<i class="brawl-stars-invtext">ific$</i></h1>
+  <h2 class="brawl-stars-subtext">The Math Race</h2>
+  <div id="game-status-container">
+    <div class="challenge-form room-form">
+      <h2>Nom de la sala</h2>
+      <form name="form_room" id="form_room">
+        <input type="text" id="room" name="room" required autofocus>
+        <div class="button-container">
+          <button type="submit" class="submit-button" id="room_submit_button">Entrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer id="version-footer" style="position: fixed; bottom: 10px; right: 10px; font-family: Arial, Helvetica, sans-serif;font-size: 12px; color: #d2d2d2;">
+  </footer>
+
+  <script>
+    localStorage.removeItem("player_image");
+    localStorage.removeItem("player_name"); 
+    document.form_room.onsubmit = function (e) {
+      e.preventDefault();
+      const room = document.getElementById("room").value;
+      window.location.href = `/gallery?back=/game/${room}`;
+    };
+  </script>
+</body>
+
+</html>

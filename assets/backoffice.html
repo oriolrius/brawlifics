@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Backoffice Brawlifics Game</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <script src="js/version.js"></script>
+  <script src="js/backoffice.js"></script>
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/ldcover/dist/index.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/ldcover/dist/ldcv.effects.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/loadingio/ldcover/dist/index.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+  <div class="ldcv ldcv-zoom">
+    <div class="base">
+      <div class="inner card">
+        <div class="card-body">
+          <h1>Are you sure?</h1>
+          <div class="button-container">
+            <button data-ldcv-set="0" class="button cancel">Cancel</button>
+            <button data-ldcv-set="1" class="button ok">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1>Brawlifics</h1>
+  <div id="games-panel">
+    <h2>Sales de joc</h2>
+    <form id="add-room-form">
+      <label for="name">Nom de la sala:</label>
+      <input type="text" class="name" name="name" placeholder="(opcional)">
+      <button class="button"><i class="fa-solid fa-plus"></i> Afegir Sala</button>
+    </form>
+    <button class="button" id="cleanup-button"><i class="fa-solid fa-broom"></i> Neteja Sales</button>
+    <button class="button" id="close-all-button"><i class="fa-solid fa-broom"></i> Tancar Totes les Sales</button>
+    <table id="games-table" class="styled-table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Status</th>
+          <th>Players</th>
+          <th>Link sala</th>
+          <th>Accions</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <footer id="version-footer" style="position: fixed; bottom: 10px; right: 10px; font-family: Arial, Helvetica, sans-serif;font-size: 12px; color: #d2d2d2;">
+  </footer>
+</body>
+</html>

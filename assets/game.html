@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Brawlifics Race</title>
+  <script src="js/version.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/loadingio/ldcover/dist/index.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/loadingio/ldcover/dist/index.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <script src="js/game.js"></script>
+</head>
+
+<body>
+  <canvas id="canvas" style="display: none;"></canvas>
+  <div class="ldcv" id="name-modal">
+    <div class="base">
+      <div class="inner card">
+        <div class="card-body">
+          <div class="modal-form">
+            <h1>Com et dius?</h1>
+            <input type="text" id="name" name="name" placeholder="Nom" autofocus>
+          </div>
+          <div class="button-container">
+            <button data-ldcv-set="0" class="button cancel">Reset</button>
+            <button data-ldcv-set="1" class="button ok">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1 class="brawl-stars-text">BrawL<i class="brawl-stars-invtext">ific$</i></h1>
+  <h2 class="brawl-stars-subtext">The Math Race</h2>
+  <h1 id="canvas-text" style="display: none;">🏆 🏆 🏆<br>Campió!!!<br>🏆 🏆 🏆<br><img src="images/brawl_dance.gif"
+      id="brawl_dance" /></h1>
+  <div id="game-status">
+    <div class="game-waiting">
+      <h2>Esperant jugadors... <i class="fa-solid fa-hourglass-half"></i></h2>
+    </div>
+    <div class="game-finished">
+      <h2>Game Over</h2>
+      <h3>Has quedat el #<span id="your_position"></span></h3>
+      <br>
+      <button onclick="window.location.href='/'" class="submit-button" style="font-size: 1em;">
+        Tornar a l'inici
+      </button>
+    </div>
+  </div>
+  <div id="game-status-container">
+    <div id="race-status">
+      <h2>Carrera - Sala <span id="sala"></span> - Jugador <span id="player-name"></span></h2>
+      <div id="race-tracks">
+        <!-- race tracks will be added here -->
+      </div>
+    </div>
+    <div class="challenge-form">
+      <h2>Repte</h2>
+      <h2><span id="challenge"></span></h2>
+      <!-- <form id="challenge_form"> -->
+      <input type="text" id="answer" name="answer" autofocus>
+      <div class="button-container">
+        <button type="submit" data-ldcv-set="answer" class="button submit" id="challenge_submit_button">Enviar</button>
+      </div>
+      <!-- </form> -->
+    </div>
+  </div>
+  <br />
+  <div id="player-panel">
+    <table class="styled-table" id="players-table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Posició</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <!-- <button onclick="window.location.href='/'" class="submit-button" style="font-size: 1em;"> -->
+    <!-- Tornar a l'inici -->
+    <!-- </button> -->
+  </div>
+  <footer id="version-footer" style="position: fixed; bottom: 10px; right: 10px; font-family: Arial, Helvetica, sans-serif;font-size: 12px; color: #d2d2d2;">
+  </footer>
+</body>
+
+</html>

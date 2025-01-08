@@ -1,0 +1,40 @@
+version: 1
+disable_existing_loggers: False
+
+formatters:
+  standard:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: standard
+    level: DEBUG
+    stream: ext://sys.stdout
+
+loggers:
+  # Root logger
+  root:
+    handlers: [console]
+    level: DEBUG
+    propagate: yes
+
+  # Your application logger
+  lib:
+    handlers: [console]
+    level: DEBUG
+    propagate: no
+
+# Example for uvicorn
+uvicorn:
+  handlers:
+    default:
+      class: logging.StreamHandler
+      formatter: standard
+      level: DEBUG
+      stream: ext://sys.stdout
+  loggers:
+    uvicorn:
+      handlers: [default]
+      level: DEBUG
+      propagate: no
