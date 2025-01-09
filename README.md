@@ -102,6 +102,12 @@ just test_game
 just test_server
 ```
 
+Full backend testing simulating varios players with various game rooms:
+
+```bash
+just test_player_journey
+```
+
 ## Deployment
 
 Based on Docker, there is a GitHub Action that builds and pushes the image to the GitHub Container Registry.
