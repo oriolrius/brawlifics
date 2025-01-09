@@ -19,7 +19,7 @@ Brawlifics is a math-based racing game that combines Brawl Stars characters with
    - Winner gets a celebration
    - Manager can see the progress in the backoffice
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jG4_qs6_E4E?si=jThoVePD5NS6BBGR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[![Video: HowTo](https://img.youtube.com/vi/jG4_qs6_E4E/0.jpg)](https://www.youtube.com/watch?v=jG4_qs6_E4E)
 
 ## Architecture
 
