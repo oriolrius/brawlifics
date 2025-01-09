@@ -136,3 +136,7 @@ Then application is ready in your URL for players, and in `/backoffice` for mana
 
 - [Brawl Stars font details](https://fontmeme.com/brawl-stars-font/)
 - [Nougat Font](https://fontmeme.com/fonts/nougat-font/)
+
+## License
+
+This project is licensed under the terms of the [GNU General Public License v3.0](LICENSE). You are free to use, modify, and distribute this software as long as you follow the terms of the license.
