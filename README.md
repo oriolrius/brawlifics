@@ -2,96 +2,131 @@
 
 ## Introduction
 
-Typical camel race where the camels are replaced by Brawlers. The game is played on a track with a length of 10 km. There up to 6 Brawlers playing at the same time on the network.
+Brawlifics is a math-based racing game that combines Brawl Stars characters with educational challenges. Players compete by solving math problems to advance their character along a race track.
 
-When a player is connected to the URL, the player has to provide a name and the player can select a Brawler already uploaded, or upload a new one using a PNG file with fixed size.
+## How It Works
 
-Central server will be responsible for the game logic and the game will be played in real time. When all player are ready there is a countdown and the game starts.
+1. Manager access backoffice and create a game room and share the room name, or the room link.
+1. Players join a game room.
+   - Enters their name
+   - Selects or uploads a character sprite (stored in `assets/images/`)
+   - Waits for other players to join
+1. During the game:
+   - Players receive math challenges
+   - Solving challenges correctly moves their character forward
+   - Progress is shown on a race track visualization
+   - First player to reach the finish line wins
+   - Winner gets a celebration
+   - Manager can see the progress in the backoffice
 
-At the same time each player will receive a simple mathematics operation challenge, for instance, a simple add, subtract or multiply operation. The player has to solve the operation and send the result to the server. The fastest the playe answer the correct result, the faster the Brawler will move.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jG4_qs6_E4E?si=jThoVePD5NS6BBGR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-When there is a winner the game will be over and the winner will be announced.
+## Architecture
 
-## Technologies
+### Parts
 
-Backend is created using Python and FastAPI, the communication between the server and the player is done using MQTT over Websockets.
+- `Frontend` for players where they can join the game.
+- `Backoffice` for managers to create and monitor games.
+- `Backend` server to manage game state and communication.
 
-Server will have also a web interface to show the game status and the players progress. And the server will support multitenancy, depending on the URL the player is connected to, the player will be assigned to a different game.
+### Backend
 
-Player interface will be a simple HTML page with JavaScript to handle the MQTT communication. Also using the JavaScript the Brawler will move on the track.
+- Built with `FastAPI`, `Python` and using `uv` for project management
+- MQTT broker (Mosquitto) handles real-time communication
+- Synchronous communication uses HTTP
+- Game state management through [`Server`](brawlifics/lib/server.py) class
+- No database, all state is in-memory
+- Configuration via environment variables (see `.env.example`)
+- `Justfile`  is a handy way to save and run project-specific commands. More info [here](https://just.systems/)
 
-## MQTT topics
+### Frontend
 
-- `brawlifics/game/<game_id>/challenge`: Server will send the challenge to the player. The challenge will be a simple math operation evaluable by the Python `eval` function.
-- `brawlifics/game/<game_id>/player/<player_id>`: Server will send the player information to the player. The player information will be:
-  - `result`: The result of the operation.
-  - `position`: The position of the player in the track. The position will be a float number between 0 and 100.
-  - `character`: The character the player is using.
-  - `name`: The name of the player.
-  - `status`: The status of the player. The status can be `playing`, `waiting`, `winner` or `loser`.
+- Pure JavaScript with HTML/CSS
+- Real-time updates via MQTT over WebSocket
+- Key components:
+  - [game.js](assets/js/game.js): Main game logic and UI
+  - [backoffice.js](assets/js/backoffice.js): Admin interface
+- Player states are stored in the browser's `localStorage`
 
-## Server management interface
+### MQTT Topics
 
-The server will have a web interface to manage the games. The interface will be a simple HTML page with JavaScript to handle the MQTT communication.
+- `brawlifics/game/{game_id}/player/{player}`: Player information
+- `brawlifics/game/{game_id}/player/{player}/challenge`: Math challenges
+- `brawlifics/game/{game_id}/player/{player}/result`: Players sent challenge results
+- `brawlifics/game/{game_id}/status`: Game state updates
+- `brawlifics/game/{game_id}/winner`: Winner announcements
 
-Because this is multitenant server, the interface will allow to manage the tenants, so it allow to create a new game, stop a game, and see the game history.
+## Backoffice
 
-Per each tenant the interface will show the games in progress and the players in each game. The interface will allow to start a new game, stop a game, and see the game history.
+The backoffice interface (`/backoffice`) allows administrators to:
 
-## Player interface
+- Create new game rooms
+- Monitor active games
+- Start/remove games
+- Clean up finished games
 
-The player interface will be a simple HTML page with JavaScript to handle the MQTT communication. The player will see the track with the Brawlers moving and the player will see the challenge to solve.
+## Security
 
-The player will have to solve the challenge and send the result to the server. The player will see the position of the player in the track and the position of the other players.
+- This is not a production-ready application
+- No authentication or authorization
+- No data validation
+- No hidden secrets
 
-## Storage
+## Development Setup
 
-Persitent data will be sabed in JSON files in the server. The server will have a folder for each tenant and inside the folder there will be a JSON file per each game.
+1. MQTT broker is required, if you don't have one, you can use the provided `compose.yml` file to start one:
 
-## Set-up
+   ```bash
+   docker-compose up mqtt -d
+   ```
 
-1. Install Poetry:
+1. Then start the server:
 
-  ```bash
-  curl -sSL https://install.python-poetry.org | python3 -
-  ```
+   ```bash
+   uv run uvicorn brawlifics.server:app --reload --log-level debug --host 0.0.0.0 --port 8000
+   ```
 
-1. Clone the repository and install dependencies:
-
-  ```bash
-  git clone ssh://git@git.oriolrius.cat:222/oriolrius/brawlifics.git
-  cd brawlifics
-  poetry install
-  ```
-
-1. Create a `.env` file with the environment variables. You can use the `.env.example` as a template.
-
-```bash
-cp .env.example .env
-```
-
-1. Run the server:
-
-```bash
-poetry run uvicorn server:app --reload
-```
-
-Or use the Justfile command:
-
-```bash
-just run
-```
-
-## Development
-
-Format the code:
-
-```bash
-poetry run black
-```
-
-To run the tests:
+### Trick for doing it at once
 
 ```bash
-poetry run pytest
+just run_server_dev
 ```
+
+## Testing
+
+There are unit tests for player, game, and server classes. Run them with:
+
+```bash
+just test_player
+just test_game
+just test_server
+```
+
+## Deployment
+
+Based on Docker, there is a GitHub Action that builds and pushes the image to the GitHub Container Registry.
+
+In the folder `deploy`, there are files to deploy the application using Docker Compose.
+
+If you already have an MQTT broker, just configure .env with the proper credentials and remove the `mqtt` service from the `compose.yml` file.
+
+Typical steps:
+
+1. Adjust the `.env` file inspired by the `.env.example` file.
+  - `https` and `wss` are optional, but recommended for production. Set them to `True` in the `.env` file.
+  - `https` is not supported for a while, use a reverse proxy.
+  - `wss` is supported, but you need to configure the MQTT broker to accept secure connections. Or use your own MQTT broker with `wss` enabled.
+1. Check the `compose.yml` file and adjust it if necessary.
+1. `compose.yml` maps folder `images` because players can upload images and they have to persist between container restarts.
+1. Run the following command:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+Then application is ready in your URL for players, and in `/backoffice` for managers.
+
+## References
+
+- [Brawl Stars font details](https://fontmeme.com/brawl-stars-font/)
+- [Nougat Font](https://fontmeme.com/fonts/nougat-font/)
