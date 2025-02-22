@@ -48,7 +48,7 @@ class Player(BaseModel):
             # a y b deben ser menores de 30
             a = random.randint(1, 30)
             b = random.randint(1, 30)
-            while a % b == 0:
+            while a % b != 0:
                 a = random.randint(1, 30)
                 b = random.randint(1, 30)
 
