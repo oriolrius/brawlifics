@@ -32,17 +32,25 @@ class Player(BaseModel):
 
     def new_challenge(self) -> str:
         """Generate a new challenge for this player."""
-        operations = ['+', '-', '*']
+        # operations = ['+', '-', '*']
+        # operation = random.choice(operations)
+
+        # if operation in ['+', '-']:
+        #     a = random.randint(1, 99)
+        #     b = random.randint(1, 99)
+        #     if operation == '-' and a < b:
+        #         a, b = b, a
+        # else:
+        #     a = random.randint(1, 10)
+        #     b = random.randint(1, 10)
+
+        operations = ['+', '-']
         operation = random.choice(operations)
 
-        if operation in ['+', '-']:
-            a = random.randint(1, 99)
-            b = random.randint(1, 99)
-            if operation == '-' and a < b:
-                a, b = b, a
-        else:
-            a = random.randint(1, 10)
-            b = random.randint(1, 10)
+        a = random.randint(1, 20)
+        b = random.randint(1, 20)
+        if operation == '-' and a < b:
+            a, b = b, a
 
         self.challenge = f"{a} {operation} {b}"
         if not self._mqtt_client:
