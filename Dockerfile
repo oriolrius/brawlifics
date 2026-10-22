@@ -1,12 +1,15 @@
 FROM ghcr.io/astral-sh/uv:python3.13-alpine
 
+# Always ship the newest CA bundle (eMudhra CA compromise, 2026-10)
+RUN apk upgrade --no-cache ca-certificates
+
 # Set working directory
 WORKDIR /app
 
 # Copy project files
 ADD . /app
 
-RUN uv sync --frozen
+RUN uv sync --frozen --no-cache
 
 # Set environment variables
 ENV PYTHONPATH=${PYTHONPATH}:/app
